@@ -8,10 +8,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity implements MainView {
-    EditText edtWidth, edtHeight, edtLength;
-    TextView tvResult;
-    Button btnCalculate;
+    @BindView(R.id.edt_height)
+            EditText edtHeight;
+    @BindView(R.id.edt_length)
+            EditText edtLength;
+    @BindView(R.id.edt_width)
+            EditText edtWidth;
+    @BindView(R.id.tv_result)
+            TextView tvResult;
+    @BindView(R.id.btn_calculate)
+            Button btnCalculate;
 
     private static final String STATE_RESULT = "state_result";
 
@@ -21,11 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtHeight = findViewById(R.id.edt_height);
-        edtLength = findViewById(R.id.edt_length);
-        edtWidth = findViewById(R.id.edt_width);
-        btnCalculate = findViewById(R.id.btn_calculate);
-        tvResult = findViewById(R.id.tv_result);
+        ButterKnife.bind(this);
 
         final MainPresenter presenter = new MainPresenter(this);
         btnCalculate.setOnClickListener(new View.OnClickListener() {
